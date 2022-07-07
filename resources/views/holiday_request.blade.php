@@ -30,8 +30,16 @@
                     <p class="text-center">
                         <button type="submit" class="btn btn-outline-dark">Request</button>
                     </p>
+                    <div>
+                        <a href="{{ action('HolidayController@add')}}">
+                            <p class="text-center">
+                            <button type="submit" class="btn btn-dark">Clear</button>
+                            </p>
+                        </a>
+                    </div>
                 </div>
                             </form>
+                            
                     </fieldset>
             </div>
         </div>
