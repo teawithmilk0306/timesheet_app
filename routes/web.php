@@ -22,3 +22,4 @@ Route::get('/timesheet_request', 'TimesheetController@request');
 Route::get('/holiday_request', 'HolidayController@add')->middleware("auth");
 Route::post('/holiday_request', 'HolidayController@create');
 Route::get('/done', 'HolidayController@add');
+Route::get('admin/user', 'Admin\UserController@add');
