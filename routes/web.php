@@ -22,4 +22,8 @@ Route::get('/timesheet_request', 'TimesheetController@request');
 Route::get('/holiday_request', 'HolidayController@add')->middleware("auth");
 Route::post('/holiday_request', 'HolidayController@create');
 Route::get('/done', 'HolidayController@add');
-Route::get('admin/user', 'Admin\UserController@add');
+//adminはKernel.phpで定義している。CheckAdmin.phpの認証を使える。
+//管理者以外はアクセス不可の命令
+Route::middleware(['admin'])->prefix('admin')->group(function () {
+    Route::get('users', 'Admin\UserController@index')->name('admin.users');
+});

@@ -61,6 +61,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        //CheckAdmin::classをadminという名前で登録。ルーティングで使うため。
+        'admin' => \App\Http\Middleware\CheckAdmin::class,
     ];
 
     /**

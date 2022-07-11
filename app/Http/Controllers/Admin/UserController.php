@@ -9,7 +9,7 @@ use App\User;
 class UserController extends Controller
 {
    
-    public function add()
+    public function index()
     {
         $users = User::All();
         return view('admin.user', ['users' => $users]);

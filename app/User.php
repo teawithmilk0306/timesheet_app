@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //isAdminメソッドを実装
+    public function isAdmin(){
+        //自身のroleが１かどうかをチェック
+        return $this->role == 1;
+    }
 }
