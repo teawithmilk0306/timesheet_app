@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,14 @@ class User extends Authenticatable
         //自身のroleが１かどうかをチェック
         return $this->role == 1;
     }
+    public function hasSubmittedHolidayRequestsInThisMonth(){
+        $dtFrom = Carbon::now()->startOfMonth()->toDateString();
+        $dtTo = Carbon::now()->endOfMonth()->toDateString();
+        return $this->holidayRequests()->whereBetween('date', [$dtFrom, $dtTo])->count() > 0;
+    }
+    
+    public function holidayRequests(){
+        return $this->hasMany('App\HolidayRequest');
+    }
+    
 }

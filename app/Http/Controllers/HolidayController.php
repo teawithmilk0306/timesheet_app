@@ -12,13 +12,8 @@ class HolidayController extends Controller
     public function add()
     
     {
-       // 今月の最初の日を取得
-        $dtFrom = Carbon::now()->startOfMonth()->toDateString();
-        // 今月の最後の日を取得
-        $dtTo = Carbon::now()->endOfMonth()->toDateString();
-        // 今月その人が出した休暇申請数を取得
-        $count = HolidayRequest::where('user_id', Auth::id())->whereBetween('date', [$dtFrom, $dtTo])->count();
-        if (0 < $count) {
+       
+        if (Auth::user()->hasSubmittedHolidayRequestsInThisMonth()) {
             return view('done'); //done.blade.phpがある前提。「今月の休暇申請は提出済みです」みたいなことが書いてあるビュー
         }else{
             return view('holiday_request',['today' => today()]);
