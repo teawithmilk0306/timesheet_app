@@ -26,4 +26,6 @@ Route::get('/done', 'HolidayController@add');
 //管理者以外はアクセス不可の命令
 Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('users', 'Admin\UserController@index')->name('admin.users');
+    Route::get('users/show', 'Admin\UserController@show');
+
 });
