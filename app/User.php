@@ -43,9 +43,13 @@ class User extends Authenticatable
         //自身のroleが１かどうかをチェック
         return $this->role == 1;
     }
+    //ユーザーが今月提出済みかをチェックするメソッド
     public function hasSubmittedHolidayRequestsInThisMonth(){
+        //今月の最初の日を取得
         $dtFrom = Carbon::now()->startOfMonth()->toDateString();
+        //今月の最後の日を取得
         $dtTo = Carbon::now()->endOfMonth()->toDateString();
+        //今月その人が出した休暇申請数を取得
         return $this->holidayRequests()->whereBetween('date', [$dtFrom, $dtTo])->count() > 0;
     }
     

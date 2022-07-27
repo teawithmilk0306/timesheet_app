@@ -16,6 +16,11 @@ class CheckAdmin
     //handleメソッドルーティングとアクションの間で動く
     public function handle($request, Closure $next)
     {
+        //$request->user()がnullだったらページを作るか４０４にするか
+        if($request->user() == null){
+            abort(404);
+        }
+        
         //ログインユーザーの管理者じゃなかったら404を返す
         //->isAdmin()はモデルのisAdminメソッドを呼んでいる
         if(!$request->user()->isAdmin()){
