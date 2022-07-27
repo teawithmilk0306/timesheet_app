@@ -18,12 +18,15 @@ class UserController extends Controller
         return view('admin.user.index', ['users' => $users]);
     }
     
-    public function show()
+    public function show(Request $request)
 
     { 
-$currentMonth = '7';
-$dates = $this->getCalendarDates('2022',$currentMonth);
-        return view('admin.user.show',['today' => today(),'dates'=> $dates,'currentMonth'=> $currentMonth]);
+
+    $user = User::find($request->id);
+    $currentMonth = '7';
+    $dates = $this->getCalendarDates('2022',$currentMonth);
+    
+        return view('admin.user.show',['today' => today(),'dates'=> $dates,'currentMonth'=> $currentMonth,'user'=> $user]);
     }
      public function getCalendarDates($year, $month)
     {
